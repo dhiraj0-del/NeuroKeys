@@ -1,5 +1,6 @@
 import cv2
 import mediapipe as mp
+from src.tracking.finger_tracker import FingerTracker
 
 
 class HandTracker:
@@ -49,11 +50,33 @@ class HandTracker:
             if results.multi_hand_landmarks:
 
                 for hand_landmarks in results.multi_hand_landmarks:
+                    finger_tracker = FingerTracker(hand_landmarks)
+                    index_tip = finger_tracker.get_index_tip()
+                    height, width, _ = frame.shape
+
+                    x = int(index_tip.x * width)
+                    y = int(index_tip.y * height)
 
                     self.mp_draw.draw_landmarks(
                         frame,
                         hand_landmarks,
                         self.mp_hands.HAND_CONNECTIONS
+                    )
+                    cv2.circle(
+                        frame,
+                        (x, y),
+                        12,
+                        (0, 255, 0),
+                        -1
+                    )
+                    cv2.putText(
+                        frame,
+                        f"Index: ({x}, {y})",
+                        (10, 30),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        0.7,
+                        (0, 255, 0),
+                        2
                     )
 
             cv2.imshow("NeuroKeys Vision Engine", frame)
