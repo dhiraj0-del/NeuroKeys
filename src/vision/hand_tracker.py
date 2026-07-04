@@ -1,6 +1,7 @@
 import cv2
 import mediapipe as mp
 from src.tracking.finger_tracker import FingerTracker
+from src.tracking.motion_tracker import MotionTracker
 
 
 class HandTracker:
@@ -16,6 +17,7 @@ class HandTracker:
 
         # Initialize MediaPipe Hands
         self.mp_hands = mp.solutions.hands
+        self.motion_tracker = MotionTracker()
 
         self.hands = self.mp_hands.Hands(
             static_image_mode=False,
@@ -51,17 +53,25 @@ class HandTracker:
 
                 for hand_landmarks in results.multi_hand_landmarks:
                     finger_tracker = FingerTracker(hand_landmarks)
+
                     index_tip = finger_tracker.get_index_tip()
+
                     height, width, _ = frame.shape
 
                     x = int(index_tip.x * width)
                     y = int(index_tip.y * height)
+
+                    self.motion_tracker.update((x, y))
+
+                    dx, dy = self.motion_tracker.get_delta()
+                    print(f"x={x}, y={y} | dx={dx}, dy={dy}")
 
                     self.mp_draw.draw_landmarks(
                         frame,
                         hand_landmarks,
                         self.mp_hands.HAND_CONNECTIONS
                     )
+
                     cv2.circle(
                         frame,
                         (x, y),
@@ -69,6 +79,7 @@ class HandTracker:
                         (0, 255, 0),
                         -1
                     )
+
                     cv2.putText(
                         frame,
                         f"Index: ({x}, {y})",
@@ -76,6 +87,16 @@ class HandTracker:
                         cv2.FONT_HERSHEY_SIMPLEX,
                         0.7,
                         (0, 255, 0),
+                        2
+                    )
+
+                    cv2.putText(
+                        frame,
+                        f"Movement: ({dx}, {dy})",
+                        (10, 60),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        0.7,
+                        (255, 255, 0),
                         2
                     )
 
