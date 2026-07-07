@@ -11,6 +11,7 @@ Responsibilities:
 """
 
 import math
+import time
 
 
 class MotionTracker:
@@ -23,18 +24,19 @@ class MotionTracker:
         self.previous_position = None
         self.current_position = None
 
+        self.previous_time = None
+        self.current_time = None
+
     def update(self, position):
         """
-        Update the fingertip position.
-
-        Parameters
-        ----------
-        position : tuple
-            (x, y) coordinates of the fingertip.
+            Update fingertip position and timestamp.
         """
 
         self.previous_position = self.current_position
+        self.previous_time = self.current_time
+
         self.current_position = position
+        self.current_time = time.time()
 
     def get_delta(self):
         """
@@ -51,6 +53,27 @@ class MotionTracker:
         dy = self.current_position[1] - self.previous_position[1]
 
         return (dx, dy)
+    
+    def get_velocity(self):
+        """
+        Returns fingertip velocity in pixels per second.
+        """
+
+        if self.previous_time is None:
+            return 0.0
+
+        delta_time = self.current_time - self.previous_time
+
+        if delta_time <= 0:
+            return 0.0
+
+        dx, dy = self.get_delta()
+
+        distance = math.sqrt(dx**2 + dy**2)
+
+        velocity = distance / delta_time
+
+        return velocity
 
     def get_speed(self):
         """
