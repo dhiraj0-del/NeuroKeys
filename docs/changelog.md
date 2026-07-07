@@ -1,20 +1,42 @@
-# Changelog
+# 📜 Changelog
 
-## v0.4.0
-- Added MotionTracker
-- Live finger movement tracking
-- Improved project architecture
+All notable changes to NeuroKeys are documented here.
 
-## v0.3.0
+---
+
+## v0.4.0 – Motion Tracking
+
+### Added
+- MotionTracker module
+- Live fingertip movement tracking
+- Modular tracking architecture
+
+### Improved
+- Project structure
+- Documentation
+- Code organization
+
+---
+
+## v0.3.0 – Finger Tracking
+
+### Added
 - FingerTracker module
-- Index finger highlighting
+- Index fingertip highlighting
 - Live coordinate display
 
-## v0.2.0
-- AI hand detection
-- MediaPipe integration
+---
+
+## v0.2.0 – AI Vision Engine
+
+### Added
+- MediaPipe hand tracking
 - 21 landmark visualization
 
-## v0.1.0
-- Camera engine
-- OpenCV integration
+---
+
+## v0.1.0 – Camera Engine
+
+### Added
+- Webcam integration
+- OpenCV support
