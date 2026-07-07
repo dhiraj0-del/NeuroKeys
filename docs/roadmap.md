@@ -1,25 +1,32 @@
-# NeuroKeys Roadmap
+# 🗺 NeuroKeys Roadmap
 
-## Phase 1
-- Camera
-- Vision
+## Phase 1 ✅
+
+- Camera Engine
+- AI Hand Detection
 - Finger Tracking
 - Motion Tracking
 
-## Phase 2
-- Speed Tracking
-- Direction Tracking
+## Phase 2 🚧
+
+- Velocity Tracking
+- Direction Detection
 - Tap Detection
 
 ## Phase 3
+
 - Virtual Keyboard
 - Surface Calibration
-- Adaptive Layout
+- Adaptive Keyboard
 
 ## Phase 4
-- AI Prediction
-- Air Mouse
+
 - Gesture Recognition
+- Air Mouse
+- AI Intent Prediction
 
 ## Phase 5
-- Engineering Clinic Release
+
+- NeuroKeys v1.0
+- Engineering Clinic Demo
+- Public Open-Source Release

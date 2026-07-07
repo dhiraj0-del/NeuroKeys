@@ -1,25 +1,25 @@
 # Sprint 4
 
-## Goal
+## Objective
 
 Implement Motion Tracking.
 
 ## Completed
 
-- MotionTracker module
-- Live dx/dy calculation
+- MotionTracker class
+- Live movement calculation
 - HUD movement display
-- Improved architecture
+- Improved project architecture
 
 ## Challenges
 
-- Debugged MediaPipe installation
-- Verified motion tracking
+- MediaPipe compatibility
+- Motion debugging
 
-## Result
+## Outcome
 
-NeuroKeys now understands fingertip movement between frames.
+NeuroKeys can now calculate fingertip movement between consecutive frames.
 
 ## Next Sprint
 
-Tap Detection.
+Velocity tracking and Tap Detection.
